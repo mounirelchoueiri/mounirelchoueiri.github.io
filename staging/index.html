@@ -1554,38 +1554,39 @@ body {
 
       <div class="steps">
         <article class="step">
-          <div class="step__media"><img src="../assets/screenshots/aimodels.png" class="step__img--center step__img--zoom" alt="Models settings: Qwen 3 8B (4-bit) loaded and active, with the All Models list showing available MLX models." /></div>
+          <div class="step__media"><img src="../assets/screenshots/inputform.png" class="step__img--top" alt="Guided TDD Brief: client, SOW, records, fields, and script types filled in step by step." /></div>
           <div class="step__body">
-            <span class="step__num">Step 01 &middot; One&#8209;time</span>
-            <h3 class="step__title">Pick a local model</h3>
+            <span class="step__num">Step 01</span>
+            <h3 class="step__title">Fill the Guided Brief</h3>
             <p class="step__desc">
-              Choose an Apple&#8209;MLX model that fits your Mac. SuiteTDD downloads the weights once,
-              caches them locally, and never touches the network again. Do this once, forget about it.
+              Walk through 5 steps: client info, records &amp; fields, script types, solution outline,
+              and any extra context. A progress bar and sticky rail show exactly where you are &mdash;
+              no blank&#8209;page anxiety.
             </p>
           </div>
         </article>
 
         <article class="step">
-          <div class="step__media"><img src="../assets/screenshots/inputform.png" class="step__img--top" alt="SuiteTDD document form: Client Name, SOW #, Project Name, TDD Title; Solution Type segmented control set to Script; Script Types with GL Plugin checked." /></div>
+          <div class="step__media"><img src="../assets/screenshots/generate.png" class="step__img--center" alt="AI generating a structured TDD section by section with a progress indicator." /></div>
           <div class="step__body">
             <span class="step__num">Step 02</span>
-            <h3 class="step__title">Fill the form</h3>
+            <h3 class="step__title">Generate with local AI</h3>
             <p class="step__desc">
-              Drop in the client, SOW #, records and fields. Tick the right SuiteScript types.
-              SuiteTDD knows what a TDD looks like &mdash; you don't have to teach it.
+              Hit Generate and watch the AI draft a structured TDD section by section &mdash; overview,
+              records, fields, scripts, deployment notes &mdash; all running on your Mac with zero cloud calls.
             </p>
           </div>
         </article>
 
         <article class="step">
-          <div class="step__media"><img src="../assets/screenshots/generate.png" class="step__img--center" alt="Generation Progress overlay: a purple sparkle, progress bar, and the status 'Negotiating with the workflow engine...' on the Sequoia wallpaper." /></div>
+          <div class="step__media"><img src="../assets/screenshots/sidebyside.png" class="step__img--top" alt="Studio view: edit markdown on the left, rendered TDD on the right, with mode tabs and outline sidebar." /></div>
           <div class="step__body">
             <span class="step__num">Step 03</span>
-            <h3 class="step__title">Generate, edit, export</h3>
+            <h3 class="step__title">Refine in Studio, then deliver</h3>
             <p class="step__desc">
-              Watch it draft a structured TDD section by section. Tweak any block, flip status from
-              <em>Draft &rarr; Client Review</em>, and export to <code style="font-family:var(--font-mono);font-size:12px;">.docx</code>
-              with your style template.
+              Switch between Draft, Preview, and Compare modes. Use the AI chat to tighten sections.
+              When the Deliver tab shows all green, export to <code style="font-family:var(--font-mono);font-size:12px;">.docx</code>
+              with your client's style template.
             </p>
           </div>
         </article>
@@ -1659,78 +1660,7 @@ body {
       </div>
 
       <div class="features">
-        <div class="feat">
-          <div class="feat__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M8 13h8M8 17h6"/></svg>
-          </div>
-          <h3 class="feat__title">Structured authoring</h3>
-          <p class="feat__desc">Records, fields with header/sublist placement, script types, solution overview &mdash; first&#8209;class form fields, not free&#8209;text prompts.</p>
-        </div>
-
-        <div class="feat">
-          <div class="feat__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h10M4 17h7"/><path d="M17 14l4 4-4 4"/></svg>
-          </div>
-          <h3 class="feat__title">Filename tokens</h3>
-          <p class="feat__desc">Build deterministic export names: <code style="font-family:var(--font-mono);font-size:12px;">TDD&#8209;{client}&#8209;{title}&#8209;{date}.docx</code>. Illegal characters are sanitized.</p>
-        </div>
-
-        <div class="feat">
-          <div class="feat__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l3-9 12-12 6 6L12 18l-9 3z"/><path d="M14 5l5 5"/></svg>
-          </div>
-          <h3 class="feat__title">Style system</h3>
-          <p class="feat__desc">Customise the cover page, fonts, heading scale and accent. Save a profile per client; reuse it forever.</p>
-        </div>
-
-        <div class="feat">
-          <div class="feat__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
-          </div>
-          <h3 class="feat__title">Status workflow</h3>
-          <p class="feat__desc">Move a TDD from <em>Draft &rarr; Client Review &rarr; Client Approved &rarr; Cancelled</em> with one click. Stays in sync with the sidebar.</p>
-        </div>
-
-        <div class="feat">
-          <div class="feat__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
-          </div>
-          <h3 class="feat__title">Export to .docx</h3>
-          <p class="feat__desc">Native Word output, formatted with headings, tables and your style template. Ready to email a stakeholder.</p>
-        </div>
-
-        <div class="feat">
-          <div class="feat__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M12 4v16"/></svg>
-          </div>
-          <h3 class="feat__title">Side&#8209;by&#8209;side preview</h3>
-          <p class="feat__desc">Edit the form on the left, watch the generated markdown render on the right. No "wait, what changed?"</p>
-        </div>
-
-        <div class="feat">
-          <div class="feat__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          </div>
-          <h3 class="feat__title">AI chat refinement</h3>
-          <p class="feat__desc">Draft 80% there? Open the chat panel and ask the AI to tighten a section, expand test cases, or add error handling &mdash; changes merge into the right spot.</p>
-        </div>
-
-        <div class="feat">
-          <div class="feat__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h12M3 18h18"/><path d="M19 10v8"/><path d="M16 14h6"/></svg>
-          </div>
-          <h3 class="feat__title">Header &amp; sublist fields</h3>
-          <p class="feat__desc">Mark each field as header or sublist with smart autocomplete &mdash; SuiteTDD knows Sales Orders have Items, Shipping, and Billing sublists.</p>
-        </div>
-
-        <div class="feat">
-          <div class="feat__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M12 11v6"/><path d="M9 14l3-3 3 3"/></svg>
-          </div>
-          <h3 class="feat__title">PDF / Word import</h3>
-          <p class="feat__desc">Drop in an existing TDD as a PDF or .docx and SuiteTDD extracts the form fields and reformats the content into your configured sections &mdash; no re&#8209;typing.</p>
-        </div>
-
+        <!-- Row 1: v4.1 headline features -->
         <div class="feat">
           <div class="feat__icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18"/><path d="M9 3v6"/></svg>
@@ -1753,6 +1683,73 @@ body {
           </div>
           <h3 class="feat__title">Studio modes <span class="feat__badge">New</span></h3>
           <p class="feat__desc">Five dedicated views &mdash; Brief, Draft, Preview, Compare, and Deliver &mdash; with a persistent header bar, toggleable outline sidebar, and an export&#8209;readiness checklist.</p>
+        </div>
+
+        <!-- Row 2: AI-powered -->
+        <div class="feat">
+          <div class="feat__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <h3 class="feat__title">AI chat refinement</h3>
+          <p class="feat__desc">Draft 80% there? Open the chat panel and ask the AI to tighten a section, expand test cases, or add error handling &mdash; changes merge into the right spot.</p>
+        </div>
+
+        <div class="feat">
+          <div class="feat__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M12 11v6"/><path d="M9 14l3-3 3 3"/></svg>
+          </div>
+          <h3 class="feat__title">PDF / Word import</h3>
+          <p class="feat__desc">Drop in an existing TDD as a PDF or .docx and SuiteTDD extracts the form fields and reformats the content into your configured sections &mdash; no re&#8209;typing.</p>
+        </div>
+
+        <!-- Row 3: Core authoring -->
+        <div class="feat">
+          <div class="feat__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l3-9 12-12 6 6L12 18l-9 3z"/><path d="M14 5l5 5"/></svg>
+          </div>
+          <h3 class="feat__title">Style system</h3>
+          <p class="feat__desc">Customise the cover page, fonts, heading scale and accent. Save a profile per client; reuse it forever.</p>
+        </div>
+
+        <div class="feat">
+          <div class="feat__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M8 13h8M8 17h6"/></svg>
+          </div>
+          <h3 class="feat__title">Structured authoring</h3>
+          <p class="feat__desc">Records, fields with header/sublist placement, script types, solution overview &mdash; first&#8209;class form fields, not free&#8209;text prompts.</p>
+        </div>
+
+        <div class="feat">
+          <div class="feat__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+          </div>
+          <h3 class="feat__title">Export to .docx</h3>
+          <p class="feat__desc">Native Word output, formatted with headings, tables and your style template. Ready to email a stakeholder.</p>
+        </div>
+
+        <!-- Row 4: Remaining -->
+        <div class="feat">
+          <div class="feat__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          </div>
+          <h3 class="feat__title">Status workflow</h3>
+          <p class="feat__desc">Move a TDD from <em>Draft &rarr; Client Review &rarr; Client Approved &rarr; Cancelled</em> with one click. Stays in sync with the sidebar.</p>
+        </div>
+
+        <div class="feat">
+          <div class="feat__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h12M3 18h18"/><path d="M19 10v8"/><path d="M16 14h6"/></svg>
+          </div>
+          <h3 class="feat__title">Header &amp; sublist fields</h3>
+          <p class="feat__desc">Mark each field as header or sublist with smart autocomplete &mdash; SuiteTDD knows Sales Orders have Items, Shipping, and Billing sublists.</p>
+        </div>
+
+        <div class="feat">
+          <div class="feat__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h10M4 17h7"/><path d="M17 14l4 4-4 4"/></svg>
+          </div>
+          <h3 class="feat__title">Filename tokens</h3>
+          <p class="feat__desc">Build deterministic export names: <code style="font-family:var(--font-mono);font-size:12px;">TDD&#8209;{client}&#8209;{title}&#8209;{date}.docx</code>. Illegal characters are sanitized.</p>
         </div>
 
         <div class="feat" style="align-items:center;justify-content:center;text-align:center;grid-column:1 / -1;">
