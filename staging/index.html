@@ -719,6 +719,9 @@ body {
 .step__img--top    { object-position: 50% 0%   !important; }
 .step__img--center { object-position: 50% 50%  !important; }
 .step__img--zoom   { transform: scale(1.22); transform-origin: 50% 50%; }
+.step__img--zoom-tl { transform: scale(1.6); transform-origin: 18% 38%; }
+.step__img--zoom-c  { transform: scale(1.8); transform-origin: 50% 50%; }
+.step__img--zoom-tr { transform: scale(1.5); transform-origin: 65% 22%; }
 .step__body {
   padding: 22px 22px 24px;
   display: flex;
@@ -1554,7 +1557,7 @@ body {
 
       <div class="steps">
         <article class="step">
-          <div class="step__media"><img src="../assets/screenshots/GuidedTDD.png" class="step__img--top" alt="Guided TDD Brief: client, SOW, records, fields, and script types filled in step by step." /></div>
+          <div class="step__media"><img src="../assets/screenshots/GuidedTDD.png" class="step__img--zoom-tl" alt="Guided TDD Brief: progress checklist on the left and Brief form on the right." /></div>
           <div class="step__body">
             <span class="step__num">Step 01</span>
             <h3 class="step__title">Fill the Guided Brief</h3>
@@ -1567,7 +1570,7 @@ body {
         </article>
 
         <article class="step">
-          <div class="step__media"><img src="../assets/screenshots/generate.png" class="step__img--center" alt="AI generating a structured TDD section by section with a progress indicator." /></div>
+          <div class="step__media"><img src="../assets/screenshots/generate.png" class="step__img--zoom-c" alt="Generation overlay: a purple sparkle, progress bar, and a witty status line drafting the TDD locally." /></div>
           <div class="step__body">
             <span class="step__num">Step 02</span>
             <h3 class="step__title">Generate with local AI</h3>
@@ -1579,7 +1582,7 @@ body {
         </article>
 
         <article class="step">
-          <div class="step__media"><img src="../assets/screenshots/studio.png" class="step__img--top" alt="Studio view: edit markdown on the left, rendered TDD on the right, with mode tabs and outline sidebar." /></div>
+          <div class="step__media"><img src="../assets/screenshots/studio.png" class="step__img--zoom-tr" alt="Studio mode tabs along the top: Brief, Draft, Preview, Compare, Deliver, with the outline sidebar." /></div>
           <div class="step__body">
             <span class="step__num">Step 03</span>
             <h3 class="step__title">Refine in Studio, then deliver</h3>
