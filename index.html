@@ -1365,10 +1365,8 @@ body {
       </nav>
       <span class="nav__spacer"></span>
       <div class="nav__cta">
-        <a class="btn btn--primary" href="#download">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16.7 13.3 12 18l-4.7-4.7"/><path d="M12 6v12"/><path d="M5 21h14"/></svg>
-          Download SuiteTDD
-        </a>
+        <a class="btn btn--ghost" href="#pricing">Download</a>
+        <a class="btn btn--primary" href="#pricing">Start Free Trial</a>
       </div>
     </div>
   </header>
@@ -1894,9 +1892,9 @@ body {
           </ul>
 
           <div class="price-card__cta">
-            <a class="btn btn--primary btn--lg" id="download-buy" href="https://github.com/mounirelchoueiri/SuiteTDD-MacOS/releases/latest">
+            <a class="btn btn--primary btn--lg" id="download-buy" href="https://buy.stripe.com/4gMdR98IUaRNgx6fbgbwk01">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16.7 13.3 12 18l-4.7-4.7"/><path d="M12 6v12"/><path d="M5 21h14"/></svg>
-              Download SuiteTDD
+              Buy SuiteTDD
             </a>
             <span class="price-card__sub">7&#8209;day free trial. No card needed.</span>
           </div>
@@ -2047,7 +2045,7 @@ body {
   (function () {
     var REPO = "mounirelchoueiri/SuiteTDD-MacOS";
     var tagEls = document.querySelectorAll("[data-release-tag]");
-    var downloadBtns = document.querySelectorAll("#download-trial, #download-buy, .nav__cta .btn");
+    var downloadBtns = document.querySelectorAll("#download-trial");
 
     fetch("https://api.github.com/repos/" + REPO + "/releases/latest", {
       headers: { Accept: "application/vnd.github+json" },
