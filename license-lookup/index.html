@@ -245,6 +245,59 @@
       document.getElementById('emailInput').value = prefillEmail;
     }
 
+    // Auto-submit after redirect from Stripe purchase
+    let autoRetries = 0;
+    const MAX_AUTO_RETRIES = 4;
+    if (prefillEmail) {
+      document.getElementById('headerSubtitle').textContent = 'Thank you for your purchase!';
+      autoLookup(prefillEmail);
+    }
+
+    async function autoLookup(email) {
+      const errorBox = document.getElementById('errorBox');
+      const submitBtn = document.getElementById('submitBtn');
+      errorBox.classList.add('hidden');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Looking up…';
+
+      try {
+        const res = await fetch(API_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + ANON_KEY,
+            'apikey': ANON_KEY
+          },
+          body: JSON.stringify({ email: email.trim().toLowerCase() })
+        });
+        const data = await res.json();
+
+        if (data.ok && data.license_key) {
+          showSuccess(email, data.license_key);
+        } else if (autoRetries < MAX_AUTO_RETRIES) {
+          autoRetries++;
+          submitBtn.textContent = 'Generating your license… (' + autoRetries + '/' + MAX_AUTO_RETRIES + ')';
+          setTimeout(function() { autoLookup(email); }, 3000);
+          return;
+        } else {
+          errorBox.textContent = data.error || 'License not found. It may take a moment — please click Look Up License to try again.';
+          errorBox.classList.remove('hidden');
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Look Up License';
+        }
+      } catch (err) {
+        if (autoRetries < MAX_AUTO_RETRIES) {
+          autoRetries++;
+          setTimeout(function() { autoLookup(email); }, 3000);
+          return;
+        }
+        errorBox.textContent = 'Network error. Please try again.';
+        errorBox.classList.remove('hidden');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Look Up License';
+      }
+    }
+
     async function lookupLicense(e) {
       e.preventDefault();
       const email = document.getElementById('emailInput').value.trim().toLowerCase();
