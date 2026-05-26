@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SuiteTDD — Your License</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      background: #f5f5f7;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      max-width: 480px;
+      width: 100%;
+      overflow: hidden;
+    }
+    .card-header {
+      background: linear-gradient(135deg, #0071e3, #5856d6);
+      padding: 36px 32px;
+      text-align: center;
+    }
+    .card-header h1 {
+      color: #fff;
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .card-header p {
+      color: rgba(255,255,255,0.85);
+      font-size: 15px;
+    }
+    .card-body { padding: 32px; }
+    .success-box {
+      text-align: center;
+      padding: 8px 0 16px 0;
+    }
+    .success-box .check {
+      width: 56px; height: 56px;
+      background: #34c759;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+    .success-box .check svg { width: 28px; height: 28px; }
+    .success-box h2 {
+      font-size: 18px;
+      color: #1d1d1f;
+      margin-bottom: 20px;
+    }
+    .key-display {
+      background: #f5f5f7;
+      border: 2px dashed #0071e3;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      margin: 0 0 12px 0;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .key-display:hover { background: #eef4ff; }
+    .key-display .label {
+      font-size: 11px;
+      color: #86868b;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 8px;
+    }
+    .key-display .key {
+      font-family: 'SF Mono', Menlo, Consolas, monospace;
+      font-size: 24px;
+      font-weight: 700;
+      color: #0071e3;
+      letter-spacing: 2px;
+    }
+    .key-display .hint {
+      font-size: 12px;
+      color: #86868b;
+      margin-top: 8px;
+    }
+    .download-btn {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      text-align: center;
+      text-decoration: none;
+      background: #1d1d1f;
+      color: #fff;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      margin: 0 0 20px 0;
+      transition: background 0.2s;
+    }
+    .download-btn:hover { background: #424245; }
+    .copied-toast {
+      display: none;
+      background: #34c759;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 8px;
+      margin: 8px auto 16px;
+      width: fit-content;
+    }
+    .steps {
+      background: #f5f5f7;
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-top: 4px;
+    }
+    .steps h3 { font-size: 14px; color: #1d1d1f; margin-bottom: 12px; }
+    .steps ol { padding-left: 20px; }
+    .steps li { font-size: 14px; color: #424245; margin-bottom: 8px; line-height: 1.5; }
+    .form-group { margin-bottom: 20px; }
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      color: #86868b;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid #d2d2d7;
+      border-radius: 10px;
+      font-size: 16px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus { border-color: #0071e3; }
+    .btn {
+      width: 100%;
+      padding: 14px;
+      background: #0071e3;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn:hover { background: #0060c0; }
+    .btn:disabled { opacity: 0.6; cursor: not-allowed; }
+    .error {
+      background: #fff2f2;
+      color: #ff3b30;
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-size: 14px;
+      margin-bottom: 20px;
+      border: 1px solid #ffcfcf;
+    }
+    .footer {
+      text-align: center;
+      padding: 20px 32px;
+      border-top: 1px solid #e5e5e5;
+    }
+    .footer p {
+      color: #86868b;
+      font-size: 12px;
+    }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="card-header">
+      <h1>SuiteTDD</h1>
+      <p id="headerSubtitle">Retrieve your license key</p>
+    </div>
+    <div class="card-body">
+
+      <!-- Lookup form -->
+      <div id="lookupForm">
+        <div id="errorBox" class="error hidden"></div>
+        <form onsubmit="lookupLicense(event)">
+          <div class="form-group">
+            <label>Email address</label>
+            <input type="email" id="emailInput" placeholder="you@example.com" required autofocus>
+          </div>
+          <button type="submit" class="btn" id="submitBtn">Look Up License</button>
+        </form>
+      </div>
+
+      <!-- Success result -->
+      <div id="successResult" class="hidden">
+        <div class="success-box">
+          <div class="check">
+            <svg fill="none" stroke="#fff" stroke-width="3" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+            </svg>
+          </div>
+          <h2>Your license key</h2>
+        </div>
+        <div class="key-display" onclick="copyKey()">
+          <div class="label">License Key</div>
+          <div class="key" id="licenseKey"></div>
+          <div class="hint">Click to copy</div>
+        </div>
+        <div class="copied-toast" id="copiedToast">Copied to clipboard!</div>
+        <a class="download-btn" id="downloadBtn" href="#">
+          Download License File (.suitetddlicense)
+        </a>
+        <div class="steps">
+          <h3>How to activate:</h3>
+          <ol>
+            <li>Open <strong>SuiteTDD</strong> on your Mac</li>
+            <li>Either double-click the downloaded license file, or click <strong>"Enter License"</strong> in the app</li>
+            <li>Enter your email: <strong id="resultEmail"></strong></li>
+            <li>Paste the license key above</li>
+            <li>Click <strong>Activate</strong></li>
+          </ol>
+        </div>
+      </div>
+
+    </div>
+    <div class="footer">
+      <p>SuiteTDD by Mounir &middot; NetSuite Technical Design Documents</p>
+    </div>
+  </div>
+
+  <script>
+    const API_URL = 'https://pawawjlhwshwvjidbqez.supabase.co/functions/v1/license-lookup';
+    const ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBhd2F3amxod3Nod3ZqaWRicWV6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkyMTMxMTYsImV4cCI6MjA5NDc4OTExNn0.MnwwHprDavBboebF54IwugwDStIHh-U7hJk0qiGRlZM';
+
+    // Pre-fill email from query param (e.g. ?email=user@example.com)
+    const params = new URLSearchParams(window.location.search);
+    const prefillEmail = params.get('email') || '';
+    if (prefillEmail) {
+      document.getElementById('emailInput').value = prefillEmail;
+    }
+
+    async function lookupLicense(e) {
+      e.preventDefault();
+      const email = document.getElementById('emailInput').value.trim().toLowerCase();
+      const errorBox = document.getElementById('errorBox');
+      const submitBtn = document.getElementById('submitBtn');
+
+      errorBox.classList.add('hidden');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Looking up…';
+
+      try {
+        const res = await fetch(API_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + ANON_KEY,
+            'apikey': ANON_KEY
+          },
+          body: JSON.stringify({ email })
+        });
+        const data = await res.json();
+
+        if (data.ok && data.license_key) {
+          showSuccess(email, data.license_key);
+        } else {
+          errorBox.textContent = data.error || 'License not found.';
+          errorBox.classList.remove('hidden');
+        }
+      } catch (err) {
+        errorBox.textContent = 'Network error. Please try again.';
+        errorBox.classList.remove('hidden');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Look Up License';
+      }
+    }
+
+    function showSuccess(email, licenseKey) {
+      document.getElementById('headerSubtitle').textContent = 'Thank you for your purchase!';
+      document.getElementById('lookupForm').classList.add('hidden');
+      document.getElementById('successResult').classList.remove('hidden');
+      document.getElementById('licenseKey').textContent = licenseKey;
+      document.getElementById('resultEmail').textContent = email;
+      document.getElementById('downloadBtn').href =
+        API_URL + '?download=1&email=' + encodeURIComponent(email);
+    }
+
+    function copyKey() {
+      const key = document.getElementById('licenseKey').textContent;
+      navigator.clipboard.writeText(key).then(function() {
+        var toast = document.getElementById('copiedToast');
+        toast.style.display = 'block';
+        setTimeout(function() { toast.style.display = 'none'; }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>
