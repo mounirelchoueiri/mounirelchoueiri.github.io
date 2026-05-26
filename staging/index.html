@@ -719,6 +719,85 @@ body {
 .step__img--top    { object-position: 50% 0%   !important; }
 .step__img--center { object-position: 50% 50%  !important; }
 .step__img--zoom   { transform: scale(1.22); transform-origin: 50% 50%; }
+
+/* Zoom icon on step images */
+.step__media { cursor: default; }
+.step__media--zoomable { cursor: pointer; }
+.step__zoom-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  background: rgba(0,0,0,0.55);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  pointer-events: none;
+  transition: background 0.2s;
+}
+.step__media--zoomable:hover .step__zoom-icon { background: rgba(0,0,0,0.8); }
+.step__zoom-icon svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Lightbox modal */
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  cursor: zoom-out;
+}
+.lightbox-overlay.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.lightbox-overlay img {
+  max-width: 92vw;
+  max-height: 90vh;
+  border-radius: 10px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+  object-fit: contain;
+}
+.lightbox-close {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  width: 36px;
+  height: 36px;
+  background: rgba(255,255,255,0.12);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+.lightbox-close:hover { background: rgba(255,255,255,0.25); }
+.lightbox-close svg {
+  width: 18px;
+  height: 18px;
+  stroke: #fff;
+  stroke-width: 2;
+  fill: none;
+}
+
 .step__body {
   padding: 22px 22px 24px;
   display: flex;
@@ -1554,7 +1633,10 @@ body {
 
       <div class="steps">
         <article class="step">
-          <div class="step__media"><img src="../assets/screenshots/GuidedTDD.png" class="step__img--top" alt="Guided TDD Brief: client, SOW, records, fields, and script types filled in step by step." /></div>
+          <div class="step__media step__media--zoomable" data-lightbox="../assets/screenshots/GuidedTDD.png">
+            <span class="step__zoom-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/><line x1="8" y1="11" x2="14" y2="11"/><line x1="11" y1="8" x2="11" y2="14"/></svg></span>
+            <img src="../assets/screenshots/GuidedTDD.png" class="step__img--top" alt="Guided TDD Brief: client, SOW, records, fields, and script types filled in step by step." />
+          </div>
           <div class="step__body">
             <span class="step__num">Step 01</span>
             <h3 class="step__title">Fill the Guided Brief</h3>
@@ -1579,7 +1661,10 @@ body {
         </article>
 
         <article class="step">
-          <div class="step__media"><img src="../assets/screenshots/studio.png" class="step__img--top" alt="Studio view: edit markdown on the left, rendered TDD on the right, with mode tabs and outline sidebar." /></div>
+          <div class="step__media step__media--zoomable" data-lightbox="../assets/screenshots/studio.png">
+            <span class="step__zoom-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/><line x1="8" y1="11" x2="14" y2="11"/><line x1="11" y1="8" x2="11" y2="14"/></svg></span>
+            <img src="../assets/screenshots/studio.png" class="step__img--top" alt="Studio view: edit markdown on the left, rendered TDD on the right, with mode tabs and outline sidebar." />
+          </div>
           <div class="step__body">
             <span class="step__num">Step 03</span>
             <h3 class="step__title">Refine in Studio, then deliver</h3>
@@ -2222,6 +2307,43 @@ body {
       { threshold: 0.05 }
     );
     io.observe(mock);
+  })();
+  </script>
+
+  <!-- Lightbox overlay -->
+  <div class="lightbox-overlay" id="lightbox">
+    <button class="lightbox-close" aria-label="Close">
+      <svg viewBox="0 0 24 24"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+    </button>
+    <img id="lightbox-img" src="" alt="" />
+  </div>
+  <script>
+  (function () {
+    var overlay = document.getElementById("lightbox");
+    var lbImg   = document.getElementById("lightbox-img");
+
+    document.querySelectorAll(".step__media--zoomable").forEach(function (el) {
+      el.addEventListener("click", function () {
+        var src = el.getAttribute("data-lightbox");
+        if (!src) return;
+        lbImg.src = src;
+        lbImg.alt = el.querySelector("img") ? el.querySelector("img").alt : "";
+        overlay.classList.add("is-active");
+        document.body.style.overflow = "hidden";
+      });
+    });
+
+    function closeLightbox() {
+      overlay.classList.remove("is-active");
+      document.body.style.overflow = "";
+    }
+
+    overlay.addEventListener("click", function (e) {
+      if (e.target === overlay || e.target.closest(".lightbox-close")) closeLightbox();
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeLightbox();
+    });
   })();
   </script>
 </body>
